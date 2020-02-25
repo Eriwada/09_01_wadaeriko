@@ -217,6 +217,7 @@ $chart_data = substr($chart_data, 0, -2) ?>
                 });
         }
 
+
         // 送信ボタンクリック時の処理
         document.getElementById('send').addEventListener('click', () => {
             // createの処理
@@ -312,6 +313,15 @@ $chart_data = substr($chart_data, 0, -2) ?>
         // 読み込み時のデータ取得処理
         window.onload = () => {
             readData(readUrl);
+            Morris.Line({
+                element: 'chart',
+                data: [<?php echo $chart_data; ?>],
+                xkey: 'year',
+                ykeys: ['profit', 'purchase', 'sale'],
+                labels: ['利益', '仕入', '売上'],
+                hideHover: 'auto',
+                stacked: true
+            });
         };
     </script>
     <script>
